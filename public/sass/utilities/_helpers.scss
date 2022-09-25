@@ -1,0 +1,9 @@
+.h-flex {
+    @include flex();
+
+    &-md {
+        @include media(medium) {
+            @include flex();
+        }
+    }
+}

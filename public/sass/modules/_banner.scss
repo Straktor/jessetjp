@@ -1,0 +1,41 @@
+@mixin module-banner {
+	/* Banner */
+	.banner {
+		h1,
+		h2 {
+			color: $brand-white;
+		}
+
+		p {
+			color: $brand-white;
+			margin-bottom: 0;
+		}
+	}
+
+	.banner_top {
+		background-image: url(../img/header-bg.jpg);
+	}
+
+	.banner_bottom {
+		padding: 10em 0 3em;
+		background-image: url(../img/banner-bottom.jpg);
+
+		h2 {
+			margin: 0;
+			font-size: 60px;
+			color: $brand-white;
+		}
+
+		a {
+			color: $brand-white;
+		}
+
+		.heading {
+			margin-bottom: 0;
+		}
+
+		.copyright {
+			margin-top: 7em;
+		}
+	}
+}
