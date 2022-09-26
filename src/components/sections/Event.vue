@@ -190,7 +190,7 @@
                         comme vous aurez à marcher sur le sable, dans l'herbe et à traverser un pont. Si vous souhaitez en porter, faites-le au cocktail ou au souper! Je vous partage également notre
                         palette de couleur pour le cortège.
                     </p>
-                    <img src="/img/temp/couleurs.png" />
+                    <img src="/img/temp/couleur.png" />
                     <h2>Contact</h2>
                     <p>
                         Le jour de l'événement, la personne-ressource pour toutes vos questions, propositions, prises de parole, etc. sera notre coordonnatrice, Marie-Ève Quirion (514) 226-5984.

@@ -13,7 +13,7 @@
                     <ul class="timeline animate-box">
                         <li class="timeline-item animate-box">
                             <div class="timeline-badge">
-                                <img :src="'/img/story-1.jpg'" alt="" />
+                                <img :src="'/img/temp/commencement-64.jpeg'" alt="" />
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -32,7 +32,7 @@
                         </li>
                         <li class="timeline-item animate-box">
                             <div class="timeline-badge">
-                                <img :src="'/img/story-2.jpg'" alt="" />
+                                <img :src="'/img/temp/vraie date-31.jpeg'" alt="" />
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -51,7 +51,7 @@
                         </li>
                         <li class="timeline-item animate-box">
                             <div class="timeline-badge">
-                                <img :src="'/img/story-3.jpg'" alt="" />
+                                <img :src="'/img/temp/relation-9.jpeg'" alt="" />
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -71,7 +71,7 @@
                         </li>
                         <li class="timeline-item animate-box">
                             <div class="timeline-badge">
-                                <img :src="'/img/story-4.jpg'" alt="" />
+                                <img :src="'/img/temp/grande demande-42.jpeg'" alt="" />
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">

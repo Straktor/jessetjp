@@ -5,7 +5,7 @@
         <Header />
         <AboutUs />
         <Countdown />
-        <Event :enable-maps="false" />
+        <Event :enable-maps="true" />
         <OurStory />
         <Gallery />
         <Counter />
