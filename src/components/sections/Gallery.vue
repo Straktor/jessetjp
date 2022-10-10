@@ -27,10 +27,8 @@
                                 <img :src="`/img/gallery/${p.path}`" alt="gallery" />
                             </a>
                         </div>
+                        asdfasdf
                     </div>
-                </div>
-                <div class="text-center">
-                    <a href="gallery-single.html" class="btn btn-outline btn-lg">Tout voir</a>
                 </div>
             </div>
             <!-- /.row -->

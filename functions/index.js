@@ -1,9 +1,15 @@
-const functions = require("firebase-functions");
+const functions = require("firebase-functions")
+// const axios = require("axios").default
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+const { initializeApp } = require("firebase-admin/app")
+const { getFirestore, FieldValue } = require("firebase-admin/firestore")
+
+initializeApp()
+const db = getFirestore()
+
+exports.rsvp = functions.https.onCall(async (data, context) => {
+    await db.collection("rsvp").add({
+        ...data,
+        createdAt: FieldValue.serverTimestamp(),
+    })
+})

@@ -632,14 +632,21 @@ img {
     position: absolute;
     left: 0;
     transition: all 0.2s ease-out;
+    color: #fff;
+    background: #fff;
 }
+.nav-toggle.nav-white.active > i::before,
+.nav-toggle.nav-white.active > i::after {
+    background-color: #fff;
+}
+
 .nav-toggle.nav-white > i {
-    color: #ffffff;
-    background: #ffffff;
+    color: #000;
+    background: #000;
 }
 .nav-toggle.nav-white > i::before,
 .nav-toggle.nav-white > i::after {
-    background: #ffffff;
+    background: #000;
 }
 .nav-toggle i::before {
     top: -7px;
@@ -1720,6 +1727,7 @@ footer .copyright .block {
     right: 0px;
 }
 .switch-field #yes:checked ~ .switch label[for="yes"] {
+    background-color: #ebfaec;
     border-color: #4caf50;
     color: #4caf50;
 }
@@ -1736,6 +1744,7 @@ footer .copyright .block {
     height: 12px;
 }
 .switch-field #no:checked ~ .switch label[for="no"] {
+    background-color: #f7e1df;
     border-color: #f44336;
     color: #f44336;
 }
