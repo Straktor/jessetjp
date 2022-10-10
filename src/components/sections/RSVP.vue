@@ -95,7 +95,7 @@ const submit = () => {
         guest: guest.value,
     })
         .then(() => {
-            console.log("All good")
+            console.log("rsvp sent")
         })
         .finally(() => {
             loading.value = false
