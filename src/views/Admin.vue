@@ -1,28 +1,38 @@
 <template>
-    <div class="main">
-        {{ rsvp }}
-
-        <v-table density="compact">
-            <thead>
-                <tr>
-                    <th class="text-left">Réponse</th>
-                    <th class="text-left">Nom</th>
-                    <th class="text-left">Courriel</th>
-                    <th class="text-left">Invité</th>
-                    <!-- <th class="text-left">Date</th> -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="item in rsvp" :key="item.id">
-                    <td>{{ item.response }}</td>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.email }}</td>
-                    <td>{{ item.guest }}</td>
-                    <!-- <td>{{ item.createdAt }}</td> -->
-                </tr>
-            </tbody>
-        </v-table>
-    </div>
+    <v-app>
+        <v-main>
+            <v-container>
+                <h1>RSVP</h1>
+                <h3>Nombre yes: {{ stats.numOfYes }}</h3>
+                <h3>Nombre No: {{ stats.numOfNo }}</h3>
+                <h3>Nombre d'invités: {{ stats.guest }}</h3>
+                <v-divider />
+                <h2>Réponses</h2>
+                <v-table density="compact" class="cContainer">
+                    <thead>
+                        <tr>
+                            <th class="text-left">#</th>
+                            <th class="text-left">Réponse</th>
+                            <th class="text-left">Nom</th>
+                            <th class="text-left">Courriel</th>
+                            <th class="text-left">Invité</th>
+                            <!-- <th class="text-left">Date</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item, index) in rsvp" :key="item.id">
+                            <td>{{ index + 1 }}</td>
+                            <td>{{ item.response }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.email }}</td>
+                            <td>{{ item.guest }}</td>
+                            <!-- <td>{{ item.createdAt }}</td> -->
+                        </tr>
+                    </tbody>
+                </v-table>
+            </v-container>
+        </v-main>
+    </v-app>
 </template>
 
 <script lang="ts" setup>
@@ -44,6 +54,14 @@ const rsvp = computed(() => {
     return rsvpRepo.all()
 })
 
+const stats = computed(() => {
+    return {
+        numOfYes: rsvp.value.filter((r) => r.response.toLowerCase() === "yes").length,
+        numOfNo: rsvp.value.filter((r) => r.response.toLowerCase() === "no").length,
+        guest: rsvp.value.filter((r) => r.guest).length,
+    }
+})
+
 onMounted(() => {
     onSnapshot(query(collection(db.value, "rsvp")), (docs) => {
         const rsvps: g = []
@@ -62,4 +80,9 @@ onMounted(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.cContainer {
+    padding: 0;
+    border: 1px solid #ccc;
+}
+</style>
