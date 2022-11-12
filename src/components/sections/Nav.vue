@@ -3,26 +3,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-2">
-                    <div id="logo"><a href="index.html">#LaBelleEtLeBlond</a></div>
+                    <div id="logo"><a href="/">#LaBelleEtLeBlond</a></div>
                 </div>
                 <div class="col-xs-10 menu-2">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active">
+                        <li v-if="!props.enableLogin" class="active">
                             <a class="page-scroll" href="#header">Accueil</a>
                         </li>
-                        <li>
+                        <li v-if="!props.enableLogin">
                             <a class="page-scroll" href="#events">Événement</a>
                         </li>
-                        <li>
+                        <li v-if="!props.enableLogin">
                             <a class="page-scroll" href="#couple-story">Nous</a>
                         </li>
-                        <li>
+                        <li v-if="!props.enableLogin">
                             <a class="page-scroll" href="#gallery">Photos</a>
                         </li>
-                        <li>
+                        <li v-if="!props.enableLogin">
                             <a class="page-scroll" href="#invitation">Réservation</a>
                         </li>
-                        <li>
+                        <li v-if="props.enableLogin">
                             <a v-if="JSON.stringify(loggedInUser) === '{}'" class="logginNav" @click="showLogin(true)">Connectez-vous</a>
                             <a v-else class="logginNav" @click="logout()">logout</a>
                         </li>
@@ -79,16 +79,20 @@
 </template>
 
 <script lang="ts" setup>
-// import { onMounted } from "vue"
 import { ref } from "vue"
 
 import firebaseStore from "@/stores/firebaseStore"
 import { storeToRefs } from "pinia"
 
-// import firebase from "firebase/compat/app"
-// import * as firebaseui from "firebaseui"
-
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth"
+
+interface Props {
+    enableLogin?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    enableLogin: false,
+})
 
 const loginDialogSelected = ref(false)
 const dialog = ref(false)
@@ -101,17 +105,9 @@ const loggedInUser = ref({})
 const store = firebaseStore()
 const { auth } = storeToRefs(store)
 
-// const ui = new firebaseui.auth.AuthUI(auth.value)
-
 function showLogin(login: boolean) {
     loginDialogSelected.value = login
     dialog.value = true
-
-    // ui.start("#firebaseui-auth-container", {
-    //     signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
-    //     signInFlow: "popup",
-    //     signInSuccessUrl: "#",
-    // })
 }
 
 function toggleLoginSignInText() {
@@ -120,7 +116,7 @@ function toggleLoginSignInText() {
 }
 
 function actionBtn() {
-    loginDialogSelected.value ? signup(email.value, password.value) : login(email.value, password.value)
+    loginDialogSelected.value ? login(email.value, password.value) : signup(email.value, password.value)
 }
 
 function close() {
@@ -160,16 +156,11 @@ function logout() {
 onAuthStateChanged(auth.value, (user) => {
     if (user) {
         loggedInUser.value = user
-        console.log(JSON.stringify(user))
     } else {
         loggedInUser.value = {}
         console.log("logged out")
     }
 })
-
-// onMounted(() => {
-
-// })
 </script>
 
 <style scoped>

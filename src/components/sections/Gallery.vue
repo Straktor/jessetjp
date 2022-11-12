@@ -27,7 +27,6 @@
                                 <img :src="`/img/gallery/${p.path}`" alt="gallery" />
                             </a>
                         </div>
-                        asdfasdf
                     </div>
                 </div>
             </div>

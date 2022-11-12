@@ -43,10 +43,12 @@
                                 <input v-model="guest" type="text" class="form-control" id="form-guest-name" name="form-name" />
                             </div>
                         </div>
+                        <h3 class="invitation_heading">Nombre d'enfants?</h3>
                         <div class="row">
-                            <div class="guest-list form-field col-sm-12"></div>
+                            <div id="guest-name-field" class="form-field col-sm-12">
+                                <input v-model="kids" type="number" placeholder="0" class="form-control" id="form-guest-name" name="form-name" />
+                            </div>
                         </div>
-
                         <div class="row">
                             <div class="col-sm-12 text-center">
                                 <button type="submit" class="btn btn-outline-black btn-lg send-button" :class="disabledSubmit ? 'disabled' : ''" @click="submit()">
@@ -74,6 +76,7 @@ const rsvp = ref(undefined)
 const name = ref("")
 const email = ref("")
 const guest = ref("")
+const kids = ref("")
 
 const loading = ref(false)
 
@@ -82,10 +85,7 @@ const disabledSubmit = computed(() => {
 })
 
 const submit = () => {
-    console.log(rsvp.value)
-    console.log(name.value)
-    console.log(email.value)
-    console.log(guest.value)
+    if (disabledSubmit.value) return
 
     loading.value = true
     sendRSVP({
@@ -93,13 +93,10 @@ const submit = () => {
         name: rsvp.value,
         email: email.value,
         guest: guest.value,
+        kids: kids.value,
+    }).finally(() => {
+        loading.value = false
     })
-        .then(() => {
-            console.log("rsvp sent")
-        })
-        .finally(() => {
-            loading.value = false
-        })
 }
 </script>
 

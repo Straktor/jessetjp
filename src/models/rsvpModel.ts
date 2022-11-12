@@ -10,6 +10,7 @@ export default class RSVP extends Model {
             email: this.string(""),
             guest: this.string(""),
             response: this.string(""),
+            kids: this.attr(""),
             createdAt: this.attr(null),
         }
     }
