@@ -13,3 +13,9 @@ exports.rsvp = functions.https.onCall(async (data, context) => {
         createdAt: FieldValue.serverTimestamp(),
     })
 })
+
+exports.deleteRsvp = functions.https.onCall(async (data, context) => {
+    await db.collection("rsvp").doc(data.id).update({
+        archive: true,
+    })
+})

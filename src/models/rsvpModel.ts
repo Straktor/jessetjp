@@ -11,6 +11,7 @@ export default class RSVP extends Model {
             guest: this.string(""),
             response: this.string(""),
             kids: this.attr(""),
+            archive: this.attr(false),
             createdAt: this.attr(null),
         }
     }
@@ -20,4 +21,6 @@ export default class RSVP extends Model {
     declare email: string
     declare guest: string
     declare response: string
+    declare kids: number
+    declare archive: boolean
 }

@@ -58,6 +58,23 @@
                             </div>
                         </div>
                     </form>
+
+                    <v-dialog v-model="dialog" max-width="600px">
+                        <v-card>
+                            <v-card-title> Merci de votre réponse! </v-card-title>
+                            <v-card-text>
+                                <div>Serez-vous des nôtres?: {{ rsvp === "Yes" ? "Oui" : "Non" }}</div>
+                                <div>Nom: {{ name }}</div>
+                                <div>Courriel: {{ email }}</div>
+                                <div v-if="guest">Invité: {{ guest }}</div>
+                                <div v-if="kids">Enfants: {{ kids }}</div>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-spacer />
+                                <v-btn @click="dialog = false">Close</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
                 </div>
             </div>
         </div>
@@ -71,6 +88,8 @@ import firebaseStore from "@/stores/firebaseStore"
 
 const store = firebaseStore()
 const { sendRSVP } = store
+
+const dialog = ref(false)
 
 const rsvp = ref(undefined)
 const name = ref("")
@@ -90,12 +109,13 @@ const submit = () => {
     loading.value = true
     sendRSVP({
         response: rsvp.value,
-        name: rsvp.value,
+        name: name.value,
         email: email.value,
         guest: guest.value,
         kids: kids.value,
     }).finally(() => {
         loading.value = false
+        dialog.value = true
     })
 }
 </script>

@@ -24,7 +24,7 @@ export default defineStore("firebaseStore", () => {
     const functions = ref(getFunctions(app.value))
 
     // Activate to test local functions
-    // connectFunctionsEmulator(functions.value, "localhost", 5001)
+    //connectFunctionsEmulator(functions.value, "localhost", 5000)
 
     const sendRSVP = (data: unknown) => {
         // Get cloud functions
@@ -32,5 +32,11 @@ export default defineStore("firebaseStore", () => {
         return createRSVP(data)
     }
 
-    return { app, db, auth, functions, sendRSVP }
+    const removeRSVP = (data: unknown) => {
+        // Get cloud functions
+        const deleteRSVP = httpsCallable(functions.value, "deleteRsvp")
+        return deleteRSVP(data)
+    }
+
+    return { app, db, auth, functions, sendRSVP, removeRSVP }
 })
