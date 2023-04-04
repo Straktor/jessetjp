@@ -20,27 +20,48 @@
                             <a class="page-scroll" href="#gallery">Photos</a>
                         </li>
                         <li v-if="!props.enableLogin">
-                            <a class="page-scroll" href="#invitation">Réservation</a>
+                            <a class="page-scroll" href="#invitation"
+                                >Réservation</a
+                            >
                         </li>
                         <li v-if="props.enableLogin">
-                            <a v-if="JSON.stringify(loggedInUser) === '{}'" class="logginNav" @click="showLogin(true)">Connectez-vous</a>
-                            <a v-else class="logginNav" @click="logout()">logout</a>
+                            <a
+                                v-if="JSON.stringify(loggedInUser) === '{}'"
+                                class="logginNav"
+                                @click="showLogin(true)"
+                                >Connectez-vous</a
+                            >
+                            <a v-else class="logginNav" @click="logout()"
+                                >logout</a
+                            >
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <v-dialog v-model="dialog" width="600px" persistent transition="dialog-top-transition">
+        <v-dialog
+            v-model="dialog"
+            width="600px"
+            persistent
+            transition="dialog-top-transition"
+        >
             <v-card class="white--text">
                 <v-card-title class="pa-4 mb-0">
-                    {{ loginDialogSelected ? "Se connecter" : "S'inscrire" }}
+                    {{ loginDialogSelected ? 'Se connecter' : "S'inscrire" }}
                 </v-card-title>
                 <v-divider class="my-2 mb-3" />
                 <v-card-text class="lighten-5 pa-4 py-0">
                     <div class="field">
                         <p>Email</p>
-                        <v-text-field v-model="email" placeholder="Email" hide-details required bg-color="white" class="cField white my-3 mt-1" />
+                        <v-text-field
+                            v-model="email"
+                            placeholder="Email"
+                            hide-details
+                            required
+                            bg-color="white"
+                            class="cField white my-3 mt-1"
+                        />
                     </div>
                     <div class="field">
                         <p>Password</p>
@@ -54,13 +75,26 @@
                             bg-color="white"
                             :type="showPassword ? 'text' : 'password'"
                             @click:append-inner="showPassword = !showPassword"
-                            :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                            :append-inner-icon="
+                                showPassword ? 'mdi-eye' : 'mdi-eye-off'
+                            "
                         />
                     </div>
                     <p class="dialogSwitch ma-0">
-                        {{ loginDialogSelected ? "Vous n'avez pas de compte?" : "Vous avez déjà un compte?" }}
-                        <span class="toggleLoginSignInText" @click="toggleLoginSignInText()">
-                            {{ loginDialogSelected ? "S'inscrire" : "Se connecter" }}
+                        {{
+                            loginDialogSelected
+                                ? "Vous n'avez pas de compte?"
+                                : 'Vous avez déjà un compte?'
+                        }}
+                        <span
+                            class="toggleLoginSignInText"
+                            @click="toggleLoginSignInText()"
+                        >
+                            {{
+                                loginDialogSelected
+                                    ? "S'inscrire"
+                                    : 'Se connecter'
+                            }}
                         </span>
                     </p>
                 </v-card-text>
@@ -68,9 +102,22 @@
                 <v-card-actions class="py-0">
                     <span class="white--text">{{ errorMessage }}</span>
                     <v-spacer />
-                    <v-btn class="white--text mx-2 mb-2" variant="plain" @click="close()"> Annuler </v-btn>
-                    <v-btn class="white--text mx-2 mb-2" variant="outlined" :disabled="!(email && password)" @click="actionBtn()">
-                        {{ loginDialogSelected ? "Se connecter" : "S'inscrire" }}
+                    <v-btn
+                        class="white--text mx-2 mb-2"
+                        variant="plain"
+                        @click="close()"
+                    >
+                        Annuler
+                    </v-btn>
+                    <v-btn
+                        class="white--text mx-2 mb-2"
+                        variant="outlined"
+                        :disabled="!(email && password)"
+                        @click="actionBtn()"
+                    >
+                        {{
+                            loginDialogSelected ? 'Se connecter' : "S'inscrire"
+                        }}
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -79,12 +126,17 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue"
+import { ref } from 'vue'
 
-import firebaseStore from "@/stores/firebaseStore"
-import { storeToRefs } from "pinia"
+import firebaseStore from '@/stores/firebaseStore'
+import { storeToRefs } from 'pinia'
 
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth"
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+} from 'firebase/auth'
 
 interface Props {
     enableLogin?: boolean
@@ -97,9 +149,9 @@ const props = withDefaults(defineProps<Props>(), {
 const loginDialogSelected = ref(false)
 const dialog = ref(false)
 const showPassword = ref(false)
-const email = ref("")
-const password = ref("")
-const errorMessage = ref("")
+const email = ref('')
+const password = ref('')
+const errorMessage = ref('')
 const loggedInUser = ref({})
 
 const store = firebaseStore()
@@ -112,11 +164,13 @@ function showLogin(login: boolean) {
 
 function toggleLoginSignInText() {
     loginDialogSelected.value = !loginDialogSelected.value
-    errorMessage.value = ""
+    errorMessage.value = ''
 }
 
 function actionBtn() {
-    loginDialogSelected.value ? login(email.value, password.value) : signup(email.value, password.value)
+    loginDialogSelected.value
+        ? login(email.value, password.value)
+        : signup(email.value, password.value)
 }
 
 function close() {
@@ -146,7 +200,7 @@ function login(email: string, password: string) {
 function logout() {
     signOut(auth.value)
         .then(() => {
-            console.log("signed out")
+            console.log('signed out')
         })
         .catch((error) => {
             console.log(error)
@@ -158,7 +212,7 @@ onAuthStateChanged(auth.value, (user) => {
         loggedInUser.value = user
     } else {
         loggedInUser.value = {}
-        console.log("logged out")
+        console.log('logged out')
     }
 })
 </script>
@@ -204,7 +258,7 @@ onAuthStateChanged(auth.value, (user) => {
     align-self: center;
     font-size: 40px;
     font-weight: bold;
-    font-family: "Good Vibes Pro", cursive;
+    font-family: 'Good Vibes Pro', cursive;
     margin: 0.2em;
 }
 

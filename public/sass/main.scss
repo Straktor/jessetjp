@@ -1,11 +1,11 @@
 //Utilities
-@import "utilities/utilities";
+@import 'utilities/utilities';
 //Base
-@import "base/base";
+@import 'base/base';
 //Modules
-@import "modules/modules";
+@import 'modules/modules';
 // Components
-@import "components/components";
+@import 'components/components';
 
 @include base;
 @include modules;

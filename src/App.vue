@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import firebaseStore from "@/stores/firebaseStore"
+import firebaseStore from '@/stores/firebaseStore'
 
 firebaseStore()
 </script>

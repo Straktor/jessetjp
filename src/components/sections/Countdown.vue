@@ -8,11 +8,16 @@
                         Le grand jour<br />
                         19 août 2023
                     </h2>
-                    <p class="leGrandJour">Nous avons tellement hâte de vous avoir à nos côtés pour célébrer cette journée si unique.</p>
+                    <p class="leGrandJour">
+                        Nous avons tellement hâte de vous avoir à nos côtés pour
+                        célébrer cette journée si unique.
+                    </p>
                 </div>
                 <div class="col-sm-12">
                     <div id="timer" class="timer text-center">
-                        <div class="timer-item timer-item_text">Plus que quelques instants…</div>
+                        <div class="timer-item timer-item_text">
+                            Plus que quelques instants…
+                        </div>
                         <div class="timer-item_digits">
                             <div class="timer-item">
                                 <div>
@@ -27,7 +32,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="timer-item timer-item_text">...avant de se dire “oui”!</div>
+                        <div class="timer-item timer-item_text">
+                            ...avant de se dire “oui”!
+                        </div>
                     </div>
                 </div>
             </div>

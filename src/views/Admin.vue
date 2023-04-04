@@ -28,14 +28,21 @@
                     <tbody>
                         <tr v-for="(item, index) in rsvp" :key="item.id">
                             <td>{{ index + 1 }}</td>
-                            <td>{{ item.response === "Yes" ? "Oui" : "Non" }}</td>
+                            <td>
+                                {{ item.response === 'Yes' ? 'Oui' : 'Non' }}
+                            </td>
                             <td>{{ item.name }}</td>
                             <td>{{ item.email }}</td>
                             <td>{{ item.guest }}</td>
                             <td>{{ item.kids }}</td>
                             <!-- <td>{{ item.createdAt }}</td> -->
                             <td>
-                                <v-btn variant="text" icon="mdi-delete" size="small" @click="openDialog(item)" />
+                                <v-btn
+                                    variant="text"
+                                    icon="mdi-delete"
+                                    size="small"
+                                    @click="openDialog(item)"
+                                />
                             </td>
                         </tr>
                     </tbody>
@@ -54,7 +61,11 @@
                         <v-card-actions>
                             <v-spacer />
                             <v-btn @click="dialog = false">Cancel</v-btn>
-                            <v-btn @click="deleteEntry()" :loading="dialogLoading">Delete</v-btn>
+                            <v-btn
+                                @click="deleteEntry()"
+                                :loading="dialogLoading"
+                                >Delete</v-btn
+                            >
                         </v-card-actions>
                     </v-card>
                 </v-dialog>
@@ -64,15 +75,15 @@
 </template>
 
 <script lang="ts" setup>
-import Nav from "@/components/sections/Nav.vue"
-import { ref, onMounted, computed } from "vue"
-import { collection, onSnapshot, query } from "firebase/firestore"
-import { storeToRefs } from "pinia"
-import firebaseStore from "@/stores/firebaseStore"
+import Nav from '@/components/sections/Nav.vue'
+import { ref, onMounted, computed } from 'vue'
+import { collection, onSnapshot, query } from 'firebase/firestore'
+import { storeToRefs } from 'pinia'
+import firebaseStore from '@/stores/firebaseStore'
 
-import { useRepo } from "pinia-orm"
-import RSVP from "@/models/rsvpModel"
-import { g } from "pinia-orm/dist/Data-95444d16"
+import { useRepo } from 'pinia-orm'
+import RSVP from '@/models/rsvpModel'
+import { g } from 'pinia-orm/dist/Data-95444d16'
 
 const store = firebaseStore()
 const { db } = storeToRefs(store)
@@ -98,10 +109,16 @@ const stats = computed(() => {
         }
 
     return {
-        numOfYes: rsvp.value.filter((r) => r?.response && r.response.toLowerCase() === "yes").length,
-        numOfNo: rsvp.value.filter((r) => r?.response && r?.response.toLowerCase() === "no").length,
+        numOfYes: rsvp.value.filter(
+            (r) => r?.response && r.response.toLowerCase() === 'yes',
+        ).length,
+        numOfNo: rsvp.value.filter(
+            (r) => r?.response && r?.response.toLowerCase() === 'no',
+        ).length,
         guest: rsvp.value.filter((r) => r?.guest && r?.guest).length,
-        kids: rsvp.value.filter((r) => r?.kids && r?.kids).reduce((partialSum, r) => partialSum + r.kids, 0),
+        kids: rsvp.value
+            .filter((r) => r?.kids && r?.kids)
+            .reduce((partialSum, r) => partialSum + r.kids, 0),
     }
 })
 
@@ -125,7 +142,7 @@ const deleteEntry = () => {
 }
 
 onMounted(() => {
-    onSnapshot(query(collection(db.value, "rsvp")), (docs) => {
+    onSnapshot(query(collection(db.value, 'rsvp')), (docs) => {
         const rsvps: g = []
 
         docs.forEach((doc) => {

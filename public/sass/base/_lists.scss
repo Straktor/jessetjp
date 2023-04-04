@@ -23,39 +23,39 @@ $list-side-margin: 0rem !default;
 $list-nested-side-margin: 1.25rem !default;
 
 @mixin base-lists {
-	/* List */
-	// Lists
-	ul,
-	ol,
-	dl {
-		line-height: $list-lineheight;
-		margin-bottom: $list-margin-bottom;
-		list-style-position: $list-style-position;
-	}
+    /* List */
+    // Lists
+    ul,
+    ol,
+    dl {
+        line-height: $list-lineheight;
+        margin-bottom: $list-margin-bottom;
+        list-style-position: $list-style-position;
+    }
 
-	// List items
-	li {
-		/* stylelint-disable-next-line sh-waqar/declaration-use-variable */
-		font-size: inherit;
-	}
+    // List items
+    li {
+        /* stylelint-disable-next-line sh-waqar/declaration-use-variable */
+        font-size: inherit;
+    }
 
-	// Unordered lists
-	ul {
-		list-style-type: $list-style-type;
-		margin-left: $list-side-margin;
-	}
+    // Unordered lists
+    ul {
+        list-style-type: $list-style-type;
+        margin-left: $list-side-margin;
+    }
 
-	// Ordered lists
-	ol {
-		margin-left: $list-side-margin;
-	}
+    // Ordered lists
+    ol {
+        margin-left: $list-side-margin;
+    }
 
-	// Nested unordered/ordered lists
-	ul,
-	ol {
-		& & {
-			margin-left: $list-nested-side-margin;
-			margin-bottom: 0;
-		}
-	}
+    // Nested unordered/ordered lists
+    ul,
+    ol {
+        & & {
+            margin-left: $list-nested-side-margin;
+            margin-bottom: 0;
+        }
+    }
 }

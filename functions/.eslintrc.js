@@ -4,9 +4,9 @@ module.exports = {
         es6: true,
         node: true,
     },
-    extends: ["eslint:recommended", "google", "plugin:prettier/recommended"],
+    extends: ['eslint:recommended', 'google', 'plugin:prettier/recommended'],
     rules: {
-        quotes: ["error", "double"],
+        quotes: ['error', 'double'],
     },
-    parserOptions: { parser: "babel-eslint", ecmaVersion: 9 },
+    parserOptions: { parser: 'babel-eslint', ecmaVersion: 9 },
 }

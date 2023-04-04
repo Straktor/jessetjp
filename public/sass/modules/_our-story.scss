@@ -1,6 +1,6 @@
-@import "../components/_timeline";
+@import '../components/_timeline';
 
 @mixin module-our-story {
-	/* Our story */
-	@include component-timeline;
+    /* Our story */
+    @include component-timeline;
 }
