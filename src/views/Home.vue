@@ -9,7 +9,7 @@
         <OurStory />
         <Gallery />
         <Counter />
-        <RSVP />
+        <Reservation />
         <BottomBanner />
     </div>
 </template>
@@ -23,7 +23,8 @@ import Countdown from '@/components/sections/Countdown.vue'
 import Event from '@/components/sections/Event.vue'
 import Gallery from '@/components/sections/Gallery.vue'
 import Counter from '@/components/sections/Counter.vue'
-import RSVP from '@/components/sections/RSVP.vue'
+// import RSVP from '@/components/sections/RSVP.vue'
+import Reservation from '@/components/sections/Reservation.vue'
 import BottomBanner from '@/components/sections/BottomBanner.vue'
 </script>
 

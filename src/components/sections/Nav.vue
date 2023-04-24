@@ -20,9 +20,9 @@
                             <a class="page-scroll" href="#gallery">Photos</a>
                         </li>
                         <li v-if="!props.enableLogin">
-                            <a class="page-scroll" href="#invitation"
-                                >Réservation</a
-                            >
+                            <a class="page-scroll" href="#invitation">
+                                Choix repas
+                            </a>
                         </li>
                         <li v-if="props.enableLogin">
                             <a

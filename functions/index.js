@@ -14,8 +14,21 @@ exports.rsvp = functions.https.onCall(async (data, context) => {
     })
 })
 
+exports.repas = functions.https.onCall(async (data, context) => {
+    await db.collection('repas').add({
+        ...data,
+        createdAt: FieldValue.serverTimestamp(),
+    })
+})
+
 exports.deleteRsvp = functions.https.onCall(async (data, context) => {
     await db.collection('rsvp').doc(data.id).update({
+        archive: true,
+    })
+})
+
+exports.deleteRepas = functions.https.onCall(async (data, context) => {
+    await db.collection('repas').doc(data.id).update({
         archive: true,
     })
 })

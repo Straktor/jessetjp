@@ -83,7 +83,6 @@ import firebaseStore from '@/stores/firebaseStore'
 
 import { useRepo } from 'pinia-orm'
 import RSVP from '@/models/rsvpModel'
-import { g } from 'pinia-orm/dist/Data-95444d16'
 
 const store = firebaseStore()
 const { db } = storeToRefs(store)
@@ -93,7 +92,8 @@ const rsvpRepo = useRepo(RSVP)
 
 const dialog = ref(false)
 const dialogLoading = ref(false)
-const dialogContext: g = ref(undefined)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const dialogContext: any = ref(undefined)
 
 const rsvp = computed(() => {
     return rsvpRepo.all().filter((r) => r?.response && !r.archive)
@@ -122,7 +122,8 @@ const stats = computed(() => {
     }
 })
 
-const openDialog = (item: g) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const openDialog = (item: any) => {
     dialogContext.value = item
     dialog.value = true
 }
@@ -143,7 +144,8 @@ const deleteEntry = () => {
 
 onMounted(() => {
     onSnapshot(query(collection(db.value, 'rsvp')), (docs) => {
-        const rsvps: g = []
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const rsvps: any = []
 
         docs.forEach((doc) => {
             // Set firebase id as orm id

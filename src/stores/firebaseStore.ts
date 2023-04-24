@@ -42,5 +42,26 @@ export default defineStore('firebaseStore', () => {
         return deleteRSVP(data)
     }
 
-    return { app, db, auth, functions, sendRSVP, removeRSVP }
+    const sendRepas = (data: unknown) => {
+        // Get cloud functions
+        const createRepas = httpsCallable(functions.value, 'repas')
+        return createRepas(data)
+    }
+
+    const removeRepas = (data: unknown) => {
+        // Get cloud functions
+        const deleteRepas = httpsCallable(functions.value, 'deleteRepas')
+        return deleteRepas(data)
+    }
+
+    return {
+        app,
+        db,
+        auth,
+        functions,
+        sendRSVP,
+        removeRSVP,
+        sendRepas,
+        removeRepas,
+    }
 })

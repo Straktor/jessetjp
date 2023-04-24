@@ -6,7 +6,7 @@ module.exports = {
     },
     extends: ['eslint:recommended', 'google', 'plugin:prettier/recommended'],
     rules: {
-        quotes: ['error', 'double'],
+        quotes: ['error', 'single'],
     },
     parserOptions: { parser: 'babel-eslint', ecmaVersion: 9 },
 }
