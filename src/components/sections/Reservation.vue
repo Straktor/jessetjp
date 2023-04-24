@@ -479,7 +479,7 @@ const data = reactive({
     restrictionKids: '',
     bruncAdults: 0,
     bruncKids: 0,
-    chanson: 0,
+    chanson: '',
 })
 
 const loading = ref(false)
