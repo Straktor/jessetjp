@@ -4,7 +4,10 @@
             <div class="row">
                 <div class="col-md-12 text-center heading">
                     <h2>Choix de repas</h2>
-                    <p>Faite votre choix de repas</p>
+                    <p>
+                        Faite votre choix de repas (À compléter d’ici le 9 juin
+                        SVP)
+                    </p>
                 </div>
             </div>
             <div class="row h-flex-md">
