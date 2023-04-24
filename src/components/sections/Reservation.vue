@@ -30,19 +30,6 @@
                                     required
                                 />
                             </div>
-                            <div id="email-field" class="form-field col-sm-6">
-                                <label for="form-email" class="control-label">
-                                    Email*
-                                </label>
-                                <input
-                                    v-model="data.email"
-                                    type="email"
-                                    class="form-control"
-                                    id="form-email"
-                                    name="form-email"
-                                    required
-                                />
-                            </div>
                         </div>
                         <div class="row">
                             <div
@@ -290,6 +277,94 @@
                                 />
                             </div>
                         </div>
+                        *Nous prenons en charge les coûts du souper et du bar.
+                        <br />
+                        *Un snack de soirée est prévu vers minuit.
+                        <br />
+                        <!-- Brunch -->
+                        <h3 class="invitation_heading">
+                            Brunch dimanche matin
+                        </h3>
+                        Le dimanche matin, nous déjeunerons pour 9h30. Il s'agit
+                        d'un brunch, vous pourrez ajouter le paiement à votre
+                        chambre ou à l'hôtel.<br />
+
+                        Si vous pensez déjeuner plus tôt ou plus tard, veuillez
+                        effectuer votre réservation auprès de l'hôtel.<br />
+                        Le brunch est servi de 8h30 à 12h30.<br />
+                        *Le brunch est 22 $ pour les adultes, 15 $ pour les 6 à
+                        12 ans et gratuit pour les 5 ans et moins.
+                        <br />
+
+                        Serez-vous des nôtres ?
+                        <br />
+
+                        <div class="row pt-3">
+                            <div
+                                id="guest-name-field"
+                                class="form-field col-sm-6"
+                            >
+                                <label
+                                    for="form-guest-name"
+                                    class="control-label"
+                                    id="fakefilled"
+                                >
+                                    Nombre d'adultes
+                                </label>
+                                <input
+                                    v-model="data.bruncAdults"
+                                    type="number"
+                                    placeholder="0"
+                                    class="form-control"
+                                    id="form-guest-name"
+                                    name="form-name"
+                                />
+                            </div>
+                            <div
+                                id="guest-name-field"
+                                class="form-field col-sm-6"
+                            >
+                                <label
+                                    for="form-guest-name"
+                                    class="control-label"
+                                    id="fakefilled"
+                                >
+                                    Nombre d'enfants
+                                </label>
+                                <input
+                                    v-model="data.bruncKids"
+                                    type="number"
+                                    placeholder="0"
+                                    class="form-control"
+                                    id="form-guest-name"
+                                    name="form-name"
+                                />
+                            </div>
+                        </div>
+                        <!-- Chanson -->
+                        <h3 class="invitation_heading">
+                            La chanson qui va vous faire danser
+                        </h3>
+                        <div class="row pt-3">
+                            <div
+                                id="guest-name-field"
+                                class="form-field col-sm-12"
+                            >
+                                <label
+                                    for="form-guest-name"
+                                    class="control-label"
+                                >
+                                    Chanson
+                                </label>
+                                <input
+                                    v-model="data.chanson"
+                                    type="text"
+                                    class="form-control"
+                                    id="form-guest-name"
+                                    name="form-name"
+                                />
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-sm-12 text-center">
                                 <button
@@ -318,7 +393,6 @@
                             <v-card-text>
                                 <h2>Vos choix:</h2>
                                 <div>Nom: {{ data.name }}</div>
-                                <div>Courriel: {{ data.email }}</div>
                                 <div>Entrée: {{ data.entree }}</div>
                                 <div>Repas: {{ data.repas }}</div>
                                 <div>
@@ -352,6 +426,19 @@
                                     Restriction alimentaires enfants:
                                     {{ data.restrictionKids }}
                                 </div>
+                                <h3>Brunch:</h3>
+                                <div v-if="data.bruncAdults">
+                                    Nombre d'adultes brunch:
+                                    {{ data.bruncAdults }}
+                                </div>
+                                <div v-if="data.bruncKids">
+                                    Nombre d'enfants brunch:
+                                    {{ data.bruncKids }}
+                                </div>
+                                <h3>Chanson:</h3>
+                                <div v-if="data.chanson">
+                                    Chanson: {{ data.chanson }}
+                                </div>
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer />
@@ -377,7 +464,6 @@ const dialog = ref(false)
 
 const data = reactive({
     name: '',
-    email: '',
     entree: '',
     repas: '',
     restriction: '',
@@ -388,13 +474,15 @@ const data = reactive({
     kids05: 0,
     kids612: 0,
     restrictionKids: '',
+    bruncAdults: 0,
+    bruncKids: 0,
+    chanson: 0,
 })
 
 const loading = ref(false)
 
 const disabledSubmit = computed(() => {
-    let result =
-        !(data.name && data.email && data.entree && data.repas) || loading.value
+    let result = !(data.name && data.entree && data.repas) || loading.value
 
     // Guest
     if (data.nameGuest && (!data.entreeGuest || !data.repasGuest)) result = true

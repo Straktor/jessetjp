@@ -18,6 +18,9 @@ export default class Repas extends Model {
             kids05: this.number(0),
             kids612: this.number(0),
             restrictionKids: this.string(''),
+            bruncAdults: this.number(0),
+            bruncKids: this.number(0),
+            chanson: this.string(''),
             archive: this.attr(false),
             createdAt: this.attr(null),
         }
@@ -35,6 +38,9 @@ export default class Repas extends Model {
     declare restrictionGuest: string
     declare kids05: number
     declare kids612: number
+    declare bruncAdults: number
+    declare bruncKids: number
+    declare chanson: string
     declare restrictionKids: string
     declare archive: boolean
 }

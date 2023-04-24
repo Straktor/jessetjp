@@ -18,6 +18,9 @@
                 <h3>Enfants 0-5: {{ stats.enfant05 }}</h3>
                 <h3>Enfants 6-12: {{ stats.enfant612 }}</h3>
 
+                <h3>Brunch adultes: {{ stats.brunchAdultes }}</h3>
+                <h3>Brunch enfants: {{ stats.brunchEnfants }}</h3>
+
                 <v-divider />
                 <h2>Réponses</h2>
                 <v-table density="compact" class="cContainer">
@@ -36,6 +39,9 @@
                             <th class="text-left">Enfants 0-5</th>
                             <th class="text-left">Enfants 6-12</th>
                             <th class="text-left">Restrictions Enfants</th>
+                            <th class="text-left">Brunch adultes</th>
+                            <th class="text-left">Brunch enfants</th>
+                            <th class="text-left">Chansons</th>
                             <!-- <th class="text-left">Date</th> -->
                             <th class="text-left">Actions</th>
                         </tr>
@@ -55,6 +61,10 @@
                             <td>{{ item.kids05 }}</td>
                             <td>{{ item.kids612 }}</td>
                             <td>{{ item.restrictionKids }}</td>
+                            <td>{{ item.bruncAdults }}</td>
+                            <td>{{ item.bruncKids }}</td>
+                            <td>{{ item.chanson }}</td>
+
                             <!-- <td>{{ item.createdAt }}</td> -->
                             <td>
                                 <v-btn
@@ -112,6 +122,18 @@
                             >
                                 Restriction alimentaires enfants:
                                 {{ dialogContext.restrictionKids }}
+                            </div>
+
+                            <div v-if="dialogContext.bruncAdults">
+                                Nombre d'adultes brunch:
+                                {{ dialogContext.bruncAdults }}
+                            </div>
+                            <div v-if="dialogContext.bruncKids">
+                                Nombre d'enfants brunch:
+                                {{ dialogContext.bruncKids }}
+                            </div>
+                            <div v-if="dialogContext.chanson">
+                                Chanson: {{ dialogContext.chanson }}
                             </div>
                         </v-card-text>
                         <v-card-actions>
@@ -172,6 +194,9 @@ const stats = computed(() => {
 
             enfant05: 0,
             enfant612: 0,
+
+            brunchAdultes: 0,
+            brunchEnfants: 0,
         }
     return {
         gravlax: repas.value.filter(
@@ -212,6 +237,13 @@ const stats = computed(() => {
         enfant612: repas.value
             .filter((r) => r?.kids612 && r?.kids612)
             .reduce((partialSum, r) => partialSum + r.kids612, 0),
+
+        brunchAdultes: repas.value
+            .filter((r) => r?.brunchAdults && r?.brunchAdults)
+            .reduce((partialSum, r) => partialSum + r.brunchAdults, 0),
+        brunchEnfants: repas.value
+            .filter((r) => r?.bruncKids && r?.bruncKids)
+            .reduce((partialSum, r) => partialSum + r.bruncKids, 0),
     }
 })
 

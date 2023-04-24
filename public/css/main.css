@@ -1642,6 +1642,8 @@ footer .copyright .block {
     left: 30px;
     transition: all 0.3s ease;
     font-weight: 300;
+    top: -20px;
+    left: 20px;
 }
 
 .form-field label.control-label.filled {
